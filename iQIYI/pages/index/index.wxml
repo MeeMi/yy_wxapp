@@ -1,0 +1,95 @@
+<!--index.wxml-->
+<view class="main">
+    <!-- logo + 搜索框 -->
+    <view class="index_hd">
+        <view class="logo">
+            <image src="http://www.qiyipic.com/common/fix/site-v4/sprite-headLogo-index.png"></image>
+        </view>
+        <view class="search-box">
+            <input type="text" class="search" />
+        </view>
+    </view>
+
+    <view class="index_bd">
+        <!-- 影视宣传轮播图 -->
+        <view class="drumbeating-box movie-drumbeating publicity_photo">
+            <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+                <block wx:for="{{bigImgUrls}}">
+                    <swiper-item>
+                        <image src="{{item}}" class="slide-image" width="355" height="150" />
+                    </swiper-item>
+                </block>
+            </swiper>
+        </view>
+
+        <view class="movie-info">
+            <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+                <block wx:for="{{samallImgUrls}}">
+                    <swiper-item>
+                        <view class="movie-photo">
+                            <image src="{{item}}" class="slide-image" width="355" height="150" />
+                        </view>
+                        <view class="movie-txt">
+                            <text class="title movie-title">归去来</text>
+                            <text class="update">更新至11集</text>
+                            <text class="actor">主演：唐嫣，罗晋主演：唐嫣，罗晋主演：唐嫣，罗晋</text>
+                            <text class="desc">唐嫣罗晋巴拉巴拉
+                            </text>
+                        </view>
+                    </swiper-item>
+                </block>
+            </swiper>
+        </view>
+
+
+        <!-- 电视剧列表  -->
+        <view class="movie-list">
+            <view class="list-head">
+                <text class="slogan">电视剧</text>
+                <navigator class="weui-cell weui-cell_access" hover-class="weui-cell_active" url="/pages/channel/channel" class="readMore">
+                    <text>查看更多</text>
+                    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                </navigator>
+            </view>
+            <view class="movie-containers">
+                <view class="movie-container">
+                    <image class="movie-photo" src="https://wx1.sinaimg.cn/mw1024/006OMfUzly1fr48qlmwhoj31kw27hnpl.jpg"></image>
+                    <text class="update">更新到第二集</text>
+                    <text class="title movie-title">泡沫之夏</text>
+                </view>
+
+                <view class="movie-container">
+                    <image class="movie-photo" src="https://wx1.sinaimg.cn/mw1024/006OMfUzly1fr48qlmwhoj31kw27hnpl.jpg"></image>
+                    <text class="update">更新到第二集</text>
+                    <text class="title movie-title">泡沫之夏</text>
+                </view>
+
+                <view class="movie-container">
+                    <image class="movie-photo" src="https://wx1.sinaimg.cn/mw1024/006OMfUzly1fr48qlmwhoj31kw27hnpl.jpg"></image>
+                    <text class="update">更新到第二集</text>
+                    <text class="title movie-title">泡沫之夏</text>
+                </view>
+
+                <view class="movie-container">
+                    <image class="movie-photo" src="https://wx1.sinaimg.cn/mw1024/006OMfUzly1fr48qlmwhoj31kw27hnpl.jpg"></image>
+                    <text class="update">更新到第二集</text>
+                    <text class="title movie-title">泡沫之夏</text>
+                </view>
+
+                <view class="movie-container">
+                    <image class="movie-photo" src="https://wx1.sinaimg.cn/mw1024/006OMfUzly1fr48qlmwhoj31kw27hnpl.jpg"></image>
+                    <text class="update">更新到第二集</text>
+                    <text class="title movie-title">泡沫之夏</text>
+                </view>
+
+                <view class="movie-container">
+                    <image class="movie-photo" src="https://wx1.sinaimg.cn/mw1024/006OMfUzly1fr48qlmwhoj31kw27hnpl.jpg"></image>
+                    <text class="update">更新到第二集</text>
+                    <text class="title movie-title">泡沫之夏</text>
+                </view>
+            </view>
+        </view>
+
+    </view>
+
+</view>

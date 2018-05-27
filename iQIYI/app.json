@@ -1,0 +1,44 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/logs/logs",
+        "pages/channel/channel",
+        "pages/video/video",
+        "pages/HBDC/HBDC",
+        "pages/my/my"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "WeChat",
+        "navigationBarTextStyle": "black"
+    },
+    "tabBar": {
+        "list": [{
+            "pagePath": "pages/index/index",
+            "text": "首页",
+            "iconPath": "images/indexIcon.png",
+            "selectedIconPath": "images/indexIcon_selected.png"
+        }, {
+            "pagePath": "pages/video/video",
+            "text": "短视频",
+            "iconPath": "images/videoIcon.png",
+            "selectedIconPath": "images/videoIcon_selected.png"
+        }, {
+            "pagePath": "pages/HBDC/HBDC",
+            "text": "热血街舞团",
+            "iconPath": "images/HBDC.png",
+            "selectedIconPath": "images/HBDC.png"
+        }, {
+            "pagePath": "pages/channel/channel",
+            "text": "频道",
+            "iconPath": "images/channelIcon.png",
+            "selectedIconPath": "images/channelIcon_selected.png"
+        }, {
+            "pagePath": "pages/my/my",
+            "text": "我的",
+            "iconPath": "images/myIcon.png",
+            "selectedIconPath": "images/myIcon_selected.png"
+        }]
+    }
+}
