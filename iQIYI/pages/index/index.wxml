@@ -13,10 +13,10 @@
     <view class="index_bd">
         <!-- 影视宣传轮播图 -->
         <view class="drumbeating-box movie-drumbeating publicity_photo">
-            <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-                <block wx:for="{{bigImgUrls}}">
+            <swiper autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+                <block wx:for="{{imgsUrlList}}">
                     <swiper-item>
-                        <image src="{{item}}" class="slide-image" width="355" height="150" />
+                        <image src="{{item.thumbnail}}" class="slide-image" />
                     </swiper-item>
                 </block>
             </swiper>
@@ -24,16 +24,16 @@
 
         <view class="movie-info">
             <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-                <block wx:for="{{samallImgUrls}}">
+                <block wx:for="{{imgsUrlList}}">
                     <swiper-item>
                         <view class="movie-photo">
-                            <image src="{{item}}" class="slide-image" width="355" height="150" />
+                            <image src="{{item.thumbnail}}" class="slide-image" width="355" height="150" />
                         </view>
                         <view class="movie-txt">
-                            <text class="title movie-title">归去来</text>
-                            <text class="update">更新至11集</text>
-                            <text class="actor">主演：唐嫣，罗晋主演：唐嫣，罗晋主演：唐嫣，罗晋</text>
-                            <text class="desc">唐嫣罗晋巴拉巴拉
+                            <text class="title movie-title">{{item.title}}</text>
+                            <text class="update">{{item.update}}</text>
+                            <text class="actor">主演：{{item.actor}}</text>
+                            <text class="desc">{{item.desc}}
                             </text>
                         </view>
                     </swiper-item>
