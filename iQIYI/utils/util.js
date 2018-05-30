@@ -1,19 +1,50 @@
-const formatTime = date => {
-  const year = date.getFullYear()
-  const month = date.getMonth() + 1
-  const day = date.getDate()
-  const hour = date.getHours()
-  const minute = date.getMinutes()
-  const second = date.getSeconds()
+import * as Mock from '../mock.js'
 
-  return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+// 怕opt没有传  先定制一个模板
+const DEFAULT_REQUEST_OPTIONS = {
+    url: '',
+    data: {},
+    header: {
+        'Content-Type': 'application/json'
+    },
+    method: 'GET',
+    dataType: 'json'
 }
 
-const formatNumber = n => {
-  n = n.toString()
-  return n[1] ? n : '0' + n
+let util = {
+    request(opt) {
+        let options = Object.assign({}, DEFAULT_REQUEST_OPTIONS, opt);
+        console.log(options);
+        let { url, data, header, method, dataType, mock = false } = options;
+        console.log(url, data, header, method, dataType, mock)
+
+        return new Promise((resolve, reject) => {
+            if (mock) {
+                let res = {
+                    statusCode: 200,
+                    data: Mock[url]
+                }
+                resolve(res.data);
+                return;
+            }
+
+            wx.request({
+                url,
+                data,
+                header,
+                method,
+                dataType,
+                success(res) {
+                    resolve(res.data)
+                },
+                fail(err) {
+                    reject(err)
+                }
+            })
+        })
+
+    }
 }
 
-module.exports = {
-  formatTime: formatTime
-}
+
+export default util
