@@ -6,28 +6,28 @@
             <image src="http://www.qiyipic.com/common/fix/site-v4/sprite-headLogo-index.png"></image>
         </view>
         <view class="search-box">
-            <input type="text" class="search" />
+            <input type="text" class="search" placeholder="{{searchRecommend}}" />
         </view>
     </view>
 
     <view class="index_bd">
         <!-- 影视宣传轮播图 -->
         <view class="drumbeating-box movie-drumbeating publicity_photo">
-            <swiper autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-                <block wx:for="{{imgsUrlList}}">
-                    <swiper-item>
-                        <image src="{{item.thumbnail}}" class="slide-image" />
-                    </swiper-item>
-                </block>
-            </swiper>
+            <!-- <swiper autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}"> -->
+            <!-- <block wx:for="{{imgsUrlList}}"> -->
+            <!-- <swiper-item> -->
+            <image src="{{bigImg}}" mode="widthFix" bindtap="openDetail" data-vid="{{video_id}}" />
+            <!-- </swiper-item> -->
+            <!-- </block> -->
+            <!-- </swiper> -->
         </view>
 
         <view class="movie-info">
-            <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+            <swiper indicator-dots="{{indicatorDots}}" autoplay="{{true}}" interval="20000" duration="{{duration}}" bindchange="moviepicChange">
                 <block wx:for="{{imgsUrlList}}">
-                    <swiper-item>
+                    <swiper-item data-vid="{{item.video_id}}" bindtap="openDetail">
                         <view class="movie-photo">
-                            <image src="{{item.thumbnail}}" class="slide-image" width="355" height="150" />
+                            <image src="{{item.thumbnail}}" class="slide-image" />
                         </view>
                         <view class="movie-txt">
                             <text class="title movie-title">{{item.title}}</text>
@@ -46,7 +46,7 @@
         <view class="movie-list">
             <view class="list-head">
                 <text class="slogan">电视剧</text>
-                <navigator class="weui-cell weui-cell_access" hover-class="weui-cell_active" url="/pages/channel/channel" class="readMore">
+                <navigator class="weui-cell weui-cell_access" hover-class="weui-cell_active" url="/pages/channel/channel" class="readMore" bindtap="navToMore_movie">
                     <text>查看更多</text>
                     <view class="weui-cell__ft weui-cell__ft_in-access"></view>
                 </navigator>
