@@ -7,7 +7,8 @@ Page({
      */
     data: {
         video_id: '',
-        isHidden: true
+        isListHidden: true,
+        isDescHidden: false
     },
 
     onLoad: function(option) {
@@ -34,12 +35,18 @@ Page({
     openList: function() {
         console.log('dianji')
         this.setData({
-            isHidden: false
+            isListHidden: false
         })
     },
     closeList: function() {
         this.setData({
-            isHidden: true
+            isListHidden: true
+        })
+    },
+    openDesc: function() {
+        let isDescHidden = !this.data.isDescHidden;
+        this.setData({
+            isDescHidden
         })
     }
 })

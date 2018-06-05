@@ -6,9 +6,9 @@
                 danmu-list="{{danmuList}}" enable-danmu danmu-btn controls></video>
         </view>
 
-        <view class="options-var">
+        <view class="options-box">
             <view class="watch-num">
-                <image src="/images/options/c-icon-playAmount.png"></image>
+                <image src="/images/options/c-icon-playAmount.png" bindtap="openDesc"></image>
                 <text>1.0亿</text>
             </view>
 
@@ -26,7 +26,9 @@
         <view class="video-info">
             <view class="title-box">
                 <view class="title">归去来</view>
+                <image class="fr {{isDescHidden?'topIcon':''}}" src="../../../images/c-icon-bottom.png"></image>
                 <view class="video-desc">vip每日21.30</view>
+
             </view>
 
             <view class="series">
@@ -77,7 +79,7 @@
         <!-- 剧集 -->
 
     </view>
-    <view class="series-all {{isHidden?'hidden':''}}">
+    <view class="series-all {{isListHidden?'hidden':''}}">
         <view class="series-all-hd">
             <view class="fl">剧集</view>
             <image class="fr" bindtap="closeList" src="../../../images/c-icon-close.png"></image>
@@ -90,5 +92,10 @@
             </view>
         </scroll-view>
 
+    </view>
+    <view class="desc-all {{isDescHidden?'hidden':''}}">
+        <text>主演</text><text>唐嫣、罗晋</text>
+        <text>看点</text><text>偶像剧</text>
+        <text>本集简介</text><text>偶像剧、科幻剧</text>
     </view>
 </view>
