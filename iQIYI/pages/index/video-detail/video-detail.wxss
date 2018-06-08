@@ -216,8 +216,6 @@ page {
     right: 0;
 }
 
-.desc-all {}
-
 .series-list scroll-view {
     display: flex;
     white-space: pre-wrap;
@@ -235,4 +233,9 @@ page {
 
 .hidden {
     display: none;
+}
+
+.on {
+    /* background-image: url(../../../images/videoIcon_selected.png); */
+    border: 1px solid green;
 }

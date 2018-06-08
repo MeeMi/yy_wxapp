@@ -2,8 +2,7 @@
     <view class="video-box">
 
         <view class="player">
-            <video id="myVideo" src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400"
-                danmu-list="{{danmuList}}" enable-danmu danmu-btn controls></video>
+            <video id="myVideo" src="{{playerUrl}}" controls autoplay="true"></video>
         </view>
 
         <view class="options-box">
@@ -25,9 +24,9 @@
 
         <view class="video-info">
             <view class="title-box">
-                <view class="title">归去来</view>
+                <view class="title">{{mediaList.title}}</view>
                 <image class="fr {{isDescHidden?'topIcon':''}}" src="../../../images/c-icon-bottom.png"></image>
-                <view class="video-desc">vip每日21.30</view>
+                <view class="video-desc">{{mediaList.updateTime}}</view>
 
             </view>
 
@@ -35,13 +34,13 @@
                 <view class="series-hd">
                     <view class="fl">剧集</view>
                     <image class="fr" src="../../../images/c-icon-arrow.png"></image>
-                    <view class="fr update-info" bindtap="openList">更新至35集/共50集</view>
+                    <view class="fr update-info" bindtap="openList">更新至{{mediaList.drama_num.length}}集/共50集</view>
 
                 </view>
 
                 <scroll-view scroll-x="true">
-                    <view class="video-num" wx:for="123455555555">
-                        <text class="">1</text>
+                    <view class="video-num" wx:for="{{mediaList.drama_num}}">
+                        <text bindtap="changenum" data-num="{{index}}" style="display:inline-block;width: 100%;height: 100%;" class="{{item.selected?'on':'' }}">{{index+1}}</text>
                     </view>
                 </scroll-view>
             </view>
@@ -54,9 +53,9 @@
                 </view>
 
                 <scroll-view scroll-x="true">
-                    <view class="actor-pic" wx:for="123455522225">
-                        <image src="../../../images/user-not-login.png"></image>
-                        <text>演员名字</text>
+                    <view class="actor-pic" wx:for="{{mediaList.actor}}">
+                        <image src="{{item.actor_pic}}"></image>
+                        <text>{{item.name}}</text>
                     </view>
                 </scroll-view>
             </view>
@@ -69,7 +68,7 @@
                 <scroll-view scroll-x="true">
                     <view class="recommend-video" wx:for="123455555555">
                         <image src="../../../images/user-not-login.png"></image>
-                        <text>XXXXXXXXXXXXXXXXXXXXXXXXXXX</text>
+                        <text>XXXX</text>
                     </view>
                 </scroll-view>
 
@@ -86,8 +85,8 @@
         </view>
         <scroll-view scroll-y="true">
             <view class="series-list">
-                <view class="video-num" wx:for="1111111111111111111111111111111111111111">
-                    <text class="">1</text>
+                <view class="video-num " wx:for="{{mediaList.drama_num}}">
+                    <text>{{index+1}}</text>
                 </view>
             </view>
         </scroll-view>
