@@ -6,7 +6,7 @@
             <image src="http://www.qiyipic.com/common/fix/site-v4/sprite-headLogo-index.png"></image>
         </view>
         <view class="search-box">
-            <input type="text" class="search" placeholder="{{searchRecommend}}" />
+            <input type="text" class="search" placeholder="{{searchRecommend}}" bindtap="bindKeyInput" />
         </view>
     </view>
 

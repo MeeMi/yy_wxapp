@@ -37,6 +37,7 @@ Page({
                 }
             })
             .then(res => {
+                console.log(res)
                 this.setData({
                     mediaList: res,
                     playerUrl: res.drama_num[0].video_url

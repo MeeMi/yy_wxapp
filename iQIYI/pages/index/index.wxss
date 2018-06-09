@@ -1,8 +1,9 @@
-/* container {
-    position: relative;
-} */
+page {
+    overflow: hidden;
+}
 
 .main {
+    width: 100%;
     background: #fafafa;
 }
 
@@ -14,9 +15,9 @@ text {
 .index_hd {
     position: absolute;
     height: 56rpx;
-    width: 100%;
     top: 14rpx;
-    margin: 0 32rpx;
+    margin-left: 32rpx;
+    box-sizing: border-box;
     z-index: 999;
 }
 

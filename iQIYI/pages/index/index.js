@@ -73,5 +73,10 @@ Page({
         wx.navigateTo({
             url: `video-detail/video-detail?id=${item}`
         })
+    },
+    bindKeyInput: function() {
+        wx.navigateTo({
+            url: '../search/search'
+        })
     }
 })
