@@ -1,0 +1,20 @@
+<view class="search-box">
+    <image src="../../../images/icon-search-gray.png" class="search-icon"></image>
+    <input type="text" value='{{searchVal}}' bindconfirm="search" bindtap="bindKeyInput"></input>
+</view>
+
+<view class="result-box">
+    <view class="media-box">
+        <view class="media-pic">
+            <image src="../../../images/icon-search-gray.png"></image>
+        </view>
+        <view class="meida-desc">
+            <view class="title">大耳朵图图</view>
+            <view class="media-desc">
+                <text>2014,少儿，大陆</text>
+                <text>类型：</text>
+            </view>
+        </view>
+    </view>
+
+</view>
