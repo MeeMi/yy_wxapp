@@ -78,9 +78,20 @@ page {
     width: 40rpx;
 }
 
-.video-info {
-    height: 418rpx;
+.lodingIcon {
+    width: 100%;
+    text-align: center;
 }
+
+.lodingIcon image {
+    height: 50rpx;
+    width: 50rpx;
+}
+
+
+/* .video-info {
+    height: 418rpx;
+} */
 
 .title-box {
     height: 153rpx;
@@ -155,6 +166,13 @@ page {
     line-height: 108rpx;
 }
 
+.video-num image {
+    width: 40rpx;
+    height: 40rpx;
+    position: relative;
+    top: 10rpx;
+}
+
 .series scroll-view,
 .actor scroll-view,
 .recommend scroll-view {
@@ -183,12 +201,11 @@ page {
 }
 
 .actor .actor-pic text,
-.recommend .recommend-video text {
+.recommend .recommend-video view {
     width: 100%;
     display: block;
-    overflow: hidden;
+    /* overflow: hidden; */
     display: -webkit-box;
-    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
 }
 
@@ -197,11 +214,24 @@ page {
     width: 260rpx;
     display: inline-block;
     margin-left: 20rpx;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    word-wrap: break-word;
+    word-break: break-all;
 }
 
-.recommend .recommend-video image {
+.recommend .recommend-video image:first-child {
     height: 146rpx;
     width: 100px;
+}
+
+.recommend .recommend-video image.playIcon {
+    width: 40rpx;
+    height: 40rpx;
+    position: relative;
+    top: -51rpx;
+    bottom: 50rpx;
+    right: 120rpx;
 }
 
 .series-all,
@@ -226,16 +256,10 @@ page {
     margin: 20rpx
 }
 
-.series-all image {
-    height: 25rpx;
-    width: 20rpx;
-}
-
 .hidden {
     display: none;
 }
 
-.on {
-    /* background-image: url(../../../images/videoIcon_selected.png); */
-    border: 1px solid green;
+.pick {
+    color: #0bbe06;
 }

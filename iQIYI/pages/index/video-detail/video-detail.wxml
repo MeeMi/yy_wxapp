@@ -2,7 +2,8 @@
     <view class="video-box">
 
         <view class="player">
-            <video id="myVideo" src="{{playerUrl}}" controls autoplay="true"></video>
+            <video id="myVideo" src="{{playerUrl}}" controls autoplay="true" bindended="{{next}}" bindended="{{next}}">
+            </video>
         </view>
 
         <view class="options-box">
@@ -20,8 +21,13 @@
                 <text>收藏</text>
             </view>
         </view>
-
-
+    </view>
+    <block wx:if="{{isLoading}}">
+        <view class="lodingIcon">
+            <image src="/images/c-icon-loading.gif"></image>
+        </view>
+    </block>
+    <block wx:if="{{!isLoading}}">
         <view class="video-info">
             <view class="title-box">
                 <view class="title">{{mediaList.title}}</view>
@@ -39,8 +45,9 @@
                 </view>
 
                 <scroll-view scroll-x="true">
-                    <view class="video-num" wx:for="{{mediaList.drama_num}}">
-                        <text bindtap="changenum" data-num="{{index}}" style="display:inline-block;width: 100%;height: 100%;" class="{{item.selected?'on':'' }}">{{index+1}}</text>
+                    <view class="video-num" wx:for="{{mediaList.drama_num}}" wx:key="{{drama_num}}">
+                        <text bindtap="changenum" data-num="{{index}}" style="display:inline-block;width: 100%;height: 100%;" wx:if="{{!item.selected}}">{{index+1}}</text>
+                        <image src="../../../images/c-icon-play-s.png" wx:if="{{item.selected}}"></image>
                     </view>
                 </scroll-view>
             </view>
@@ -53,7 +60,7 @@
                 </view>
 
                 <scroll-view scroll-x="true">
-                    <view class="actor-pic" wx:for="{{mediaList.actor}}">
+                    <view class="actor-pic" wx:for="{{mediaList.actor}}" wx:key="{{actor}}">
                         <image src="{{item.actor_pic}}"></image>
                         <text>{{item.name}}</text>
                     </view>
@@ -66,18 +73,18 @@
                 </view>
 
                 <scroll-view scroll-x="true">
-                    <view class="recommend-video" wx:for="123455555555">
-                        <image src="../../../images/user-not-login.png"></image>
-                        <text>XXXX</text>
+                    <view class="recommend-video" wx:for="{{mediaList.recommend_video}}" wx:key="{{recommend_video}}">
+                        <image src="{{item.thumbnail}}" bindtap="changevideo" data-num="{{index}}"></image>
+                        <image src="../../../images/c-icon-selectedPlay.png" wx:if="{{item.selected}}" class="playIcon"></image>
+                        <view class="{{item.selected?'pick':''}}">{{item.desc}}</view>
                     </view>
                 </scroll-view>
 
             </view>
         </view>
+    </block>
+    <!-- 剧集 -->
 
-        <!-- 剧集 -->
-
-    </view>
     <view class="series-all {{isListHidden?'hidden':''}}">
         <view class="series-all-hd">
             <view class="fl">剧集</view>
@@ -86,7 +93,8 @@
         <scroll-view scroll-y="true">
             <view class="series-list">
                 <view class="video-num " wx:for="{{mediaList.drama_num}}">
-                    <text>{{index+1}}</text>
+                    <text bindtap="changenum" data-num="{{index}}" wx:if="{{!item.selected}}">{{index+1}}</text>
+                    <image src="../../../images/c-icon-play-s.png" wx:if="{{item.selected}}"></image>
                 </view>
             </view>
         </scroll-view>
