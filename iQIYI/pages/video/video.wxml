@@ -1,4 +1,6 @@
 <import src="../../templates/item-template.wxml" />
+<import src="../../templates/footer.wxml" />
+
 <view class="main">
     <view class="video-tab-box">
         <text class="line" style="margin-left:{{line_ml}}rpx;"></text>
@@ -34,9 +36,7 @@
             <text>正在加载...</text>
         </block>
     </view>
-    <view class="isEnd">
-        <block wx:if="{{!hasMore}}">
-            <text>没有更多</text>
-        </block>
-    </view>
+
+    <template is="footer" data="{{hasMore}}"></template>
+
 </view>

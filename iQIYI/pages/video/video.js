@@ -14,7 +14,7 @@ Page({
         vedioList_information: null,
         line_ml: '70',
         hasMore: true,
-        isLoading: false,
+        isLoading: true,
         page: 0,
         datasize: 3
     },
@@ -48,6 +48,9 @@ Page({
             console.log(res.data)
                 // if (res.res != 0) {
             this.processData(type, res.data, res.res)
+            this.setData({
+                    isLoading: false
+                })
                 // }
         }).catch(e => {
             this.setData({
@@ -122,7 +125,10 @@ Page({
         }
     },
     onPullDownRefresh() {
-        this.getList('down')
+        this.getList('down');
+        this.setData({
+            isLoading: true
+        })
     },
     // 不明白 
     onReachBottom() {
