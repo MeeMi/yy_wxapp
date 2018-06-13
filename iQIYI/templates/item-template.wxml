@@ -7,15 +7,18 @@
             </view>
             <view class="video-option">
                 <view class="watch-num">
-                    <i class="iconfont icon-yj"></i>
+                    <!-- <i class="iconfont icon-yj"></i> -->
+                    <image src="../../images/options/c-icon-playAmount.png"></image>
                     <text>{{item.watch_num}}</text>
                 </view>
                 <view class="share">
-                    <i class="iconfont icon-fenxiang2"></i>
+                    <!-- <i class="iconfont icon-fenxiang2"></i> -->
+                    <image src="../../images/options/c-icon-share.png"></image>
                     <text>分享</text>
                 </view>
                 <view class="like">
-                    <i class="iconfont icon-aixin"></i>
+                    <!-- <i class="iconfont icon-aixin"></i> -->
+                    <image src="../../images/options/c-icon-love.png"></image>
                     <text>{{item.like_num}}</text>
                 </view>
             </view>
