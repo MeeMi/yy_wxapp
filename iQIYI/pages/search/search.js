@@ -91,8 +91,9 @@ Page({
                 temp = result.splice(i, 1);
             }
         }
+        StorageResult = temp;
         for (let i in result) {
-            StorageResult = [...temp, result[i]]
+            StorageResult = [...StorageResult, result[i]]
         }
         wx.setStorage({
             key: 'searchResult',
