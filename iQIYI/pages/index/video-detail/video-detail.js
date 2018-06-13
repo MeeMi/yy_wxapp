@@ -54,10 +54,10 @@ Page({
             .then(res => {
                 console.log(res)
                 this.setData({
-                        mediaList: res,
-                        isLoading: false,
-                        playerUrl: res.drama_num[num].video_url
-                    })
+                    mediaList: res,
+                    isLoading: false,
+                    playerUrl: res.drama_num[num].video_url
+                })
                 this.pickNum(num);
 
             })
@@ -123,7 +123,7 @@ Page({
             // console.log(this.data.mediaList)
     },
     next: function(e) {
-        console.log("audio end");
+        console.log("end");
     },
     stop: function(e) {
         console.log('stop')
