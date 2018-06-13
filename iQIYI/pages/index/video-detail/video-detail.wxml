@@ -2,7 +2,7 @@
     <view class="video-box">
 
         <view class="player">
-            <video id="myVideo" src="{{playerUrl}}" controls autoplay="true" bindended="{{next}}" bindended="{{next}}">
+            <video id="myVideo" src="{{playerUrl}}" controls autoplay="{{true}}" bindended="{{next}}" bindended="{{next}}" bindpause="{{stop}}">
             </video>
         </view>
 
@@ -40,7 +40,7 @@
                 <view class="series-hd">
                     <view class="fl">剧集</view>
                     <image class="fr" src="../../../images/c-icon-arrow.png"></image>
-                    <view class="fr update-info" bindtap="openList">更新至{{mediaList.drama_num.length}}集/共50集</view>
+                    <view class="fr update-info" bindtap="openList">更新至{{mediaList.drama_num.length}}集/共{{mediaList.update}}集</view>
 
                 </view>
 

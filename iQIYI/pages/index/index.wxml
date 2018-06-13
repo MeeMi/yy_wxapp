@@ -1,9 +1,11 @@
 <!--index.wxml-->
+<import src="../../templates/footer.wxml" />
+
 <view class="main">
     <!-- logo + 搜索框 -->
     <view class="index_hd">
         <view class="logo">
-            <image src="http://www.qiyipic.com/common/fix/site-v4/sprite-headLogo-index.png"></image>
+            <image src="../../images/logo-white.png"></image>
         </view>
         <view class="search-box">
             <input type="text" class="search" placeholder="{{searchRecommend}}" bindtap="bindKeyInput" />
@@ -13,28 +15,24 @@
     <view class="index_bd">
         <!-- 影视宣传轮播图 -->
         <view class="drumbeating-box movie-drumbeating publicity_photo">
-            <!-- <swiper autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}"> -->
-            <!-- <block wx:for="{{imgsUrlList}}"> -->
-            <!-- <swiper-item> -->
             <image src="{{bigImg}}" mode="widthFix" bindtap="openDetail" data-vid="{{video_id}}" />
-            <!-- </swiper-item> -->
-            <!-- </block> -->
-            <!-- </swiper> -->
         </view>
 
         <view class="movie-info">
-            <swiper indicator-dots="{{indicatorDots}}" autoplay="{{true}}" interval="20000" duration="{{duration}}" bindchange="moviepicChange">
-                <block wx:for="{{imgsUrlList}}">
-                    <swiper-item data-vid="{{item.video_id}}" bindtap="openDetail">
-                        <view class="movie-photo">
-                            <image src="{{item.thumbnail}}" class="slide-image" />
-                        </view>
-                        <view class="movie-txt">
-                            <text class="title movie-title">{{item.title}}</text>
-                            <text class="update">{{item.update}}</text>
-                            <text class="actor">主演：{{item.actor}}</text>
-                            <text class="desc">{{item.desc}}
+            <swiper autoplay="{{true}}" interval="5000" bindchange="moviepicChange">
+                <block wx:for="{{imgsUrlList}}" wx:key="{{imgsUrlList}}">
+                    <swiper-item data-vid="{{item.video_id}}" data-title="{{item.title}}" bindtap="openDetail">
+                        <view class="info-box">
+                            <view class="movie-photo">
+                                <image src="{{item.thumbnail}}" class="slide-image" />
+                            </view>
+                            <view class="movie-txt">
+                                <text class="title movie-title">{{item.title}}</text>
+                                <text class="update">更新至{{item.update}}集</text>
+                                <text class="actor">主演：{{item.actor}}</text>
+                                <text class="desc">{{item.desc}}
                             </text>
+                            </view>
                         </view>
                     </swiper-item>
                 </block>
@@ -52,44 +50,17 @@
                 </navigator>
             </view>
             <view class="movie-containers">
-                <view class="movie-container">
-                    <image class="movie-photo" src="https://wx1.sinaimg.cn/mw1024/006OMfUzly1fr48qlmwhoj31kw27hnpl.jpg"></image>
-                    <text class="update">更新到第二集</text>
-                    <text class="title movie-title">泡沫之夏</text>
-                </view>
-
-                <view class="movie-container">
-                    <image class="movie-photo" src="https://wx1.sinaimg.cn/mw1024/006OMfUzly1fr48qlmwhoj31kw27hnpl.jpg"></image>
-                    <text class="update">更新到第二集</text>
-                    <text class="title movie-title">泡沫之夏</text>
-                </view>
-
-                <view class="movie-container">
-                    <image class="movie-photo" src="https://wx1.sinaimg.cn/mw1024/006OMfUzly1fr48qlmwhoj31kw27hnpl.jpg"></image>
-                    <text class="update">更新到第二集</text>
-                    <text class="title movie-title">泡沫之夏</text>
-                </view>
-
-                <view class="movie-container">
-                    <image class="movie-photo" src="https://wx1.sinaimg.cn/mw1024/006OMfUzly1fr48qlmwhoj31kw27hnpl.jpg"></image>
-                    <text class="update">更新到第二集</text>
-                    <text class="title movie-title">泡沫之夏</text>
-                </view>
-
-                <view class="movie-container">
-                    <image class="movie-photo" src="https://wx1.sinaimg.cn/mw1024/006OMfUzly1fr48qlmwhoj31kw27hnpl.jpg"></image>
-                    <text class="update">更新到第二集</text>
-                    <text class="title movie-title">泡沫之夏</text>
-                </view>
-
-                <view class="movie-container">
-                    <image class="movie-photo" src="https://wx1.sinaimg.cn/mw1024/006OMfUzly1fr48qlmwhoj31kw27hnpl.jpg"></image>
-                    <text class="update">更新到第二集</text>
-                    <text class="title movie-title">泡沫之夏</text>
-                </view>
+                <block wx:for="{{List}}" wx:if="{{index<6}}">
+                    <view class="movie-container" data-vid="{{item.video_id}}" data-title="{{item.title}}" bindtap="openDetail">
+                        <image class="movie-photo" src="{{item.thumbnail}}"></image>
+                        <text class="update">更新到第{{item.update}}集</text>
+                        <text class="title movie-title">{{item.title}}</text>
+                    </view>
+                </block>
             </view>
         </view>
 
-    </view>
+        <template is="footer" data="{{hasMore}}"></template>
 
+    </view>
 </view>

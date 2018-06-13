@@ -8,10 +8,13 @@ Page({
         imgsUrlList: null,
         bigImg: '',
         searchRecommend: '',
-        video_id: ''
+        video_id: '',
+        hasMore: false,
+        List: []
     },
     onLoad: function() {
         this.requestImg();
+        this.getListData();
     },
     requestImg() {
         util.request({
@@ -27,29 +30,29 @@ Page({
                 const imgsUrlList = res.images
                 console.log(imgsUrlList);
 
-                // 搜索placeholder
-                // let searchRecommend = this.data.searchRecommend;
-
-                // for (let i = 0; i < imgsUrlList.length; i++) {
-                //     console.log(imgsUrlList[i].title)
-                //     searchRecommend = imgsUrlList[i].title
-                //     setTimeout(function() {
-                //         this.setData({
-                //             searchRecommend
-
-                //         })
-                //     }, 1000)
-                // }
-
-
                 this.setData({
-                        // hiddenLoading: true,
-                        imgsUrlList,
-                        bigImg: imgsUrlList[0].thumbnail,
-                        video_id: imgsUrlList[0].video_id
-                    })
-                    // console.log('轮播图图片')
-                    // console.log(this.images.imgsUrlList)
+                    // hiddenLoading: true,
+                    imgsUrlList,
+                    bigImg: imgsUrlList[0].thumbnail,
+                    video_id: imgsUrlList[0].video_id
+                })
+            })
+    },
+    getListData: function() {
+        util.request({
+                url: `https://www.easy-mock.com/mock/5b0c37bed0e51c310ce24ab0/iqiyi/media#!method=get`,
+                mock: false,
+                data: {
+                    tag: 'dramas',
+                    langs: 'en'
+                }
+            })
+            .then(res => {
+                console.log(res)
+                this.setData({
+                    List: res
+                })
+
             })
     },
     moviepicChange(e) {
@@ -70,8 +73,10 @@ Page({
     },
     openDetail: function(e) {
         let item = e.currentTarget.dataset.vid;
+        let title = e.currentTarget.dataset.title;
+
         wx.navigateTo({
-            url: `video-detail/video-detail?id=${item}`
+            url: `video-detail/video-detail?id=${item}&title=${title}`
         })
     },
     bindKeyInput: function() {

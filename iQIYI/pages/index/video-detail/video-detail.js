@@ -21,7 +21,7 @@ Page({
     },
     onLoad: function(option) {
 
-        console.log('页面 传过来的是' + option);
+        console.log(option.title);
 
         this.setData({
             video_id: option.id,
@@ -52,13 +52,12 @@ Page({
                 }
             })
             .then(res => {
-                // console.log(res)
+                console.log(res)
                 this.setData({
                         mediaList: res,
                         isLoading: false,
                         playerUrl: res.drama_num[num].video_url
                     })
-                    // console.log(this.data.mediaList);
                 this.pickNum(num);
 
             })
@@ -123,7 +122,10 @@ Page({
             })
             // console.log(this.data.mediaList)
     },
-    next: function() {
+    next: function(e) {
         console.log("audio end");
+    },
+    stop: function(e) {
+        console.log('stop')
     }
 })
