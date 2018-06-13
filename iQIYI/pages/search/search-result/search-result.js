@@ -45,16 +45,18 @@ Page({
     },
     clickPlay: function(e) {
         let item = e.currentTarget.dataset.vid;
+        let title = e.currentTarget.dataset.title;
         wx.navigateTo({
-            url: `../../index/video-detail/video-detail?id=${item}`
+            url: `../../index/video-detail/video-detail?id=${item}&title=${title}`
         })
     },
     openDetail: function(e) {
         console.log(e);
         let num = e.currentTarget.dataset.num;
         let item = e.currentTarget.dataset.vid;
+        let title = e.currentTarget.dataset.title;
         wx.navigateTo({
-            url: `../../index/video-detail/video-detail?id=${item}&num=${num}`
+            url: `../../index/video-detail/video-detail?id=${item}&num=${num}&title=${title}`
         })
     }
 

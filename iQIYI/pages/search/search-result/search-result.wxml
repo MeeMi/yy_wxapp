@@ -20,26 +20,26 @@
                 <text>{{item.info}}</text>
                 <text>类型：{{item.tag}}</text>
             </view>
-            <button class="weui-btn play" type="primary" bindtap="clickPlay" data-vid="{{item.video_id}}">点击播放</button>
+            <button class="weui-btn play" type="primary" bindtap="clickPlay" data-vid="{{item.video_id}}" data-title="{{item.title}}">点击播放</button>
         </view>
         <view class="media-num-box">
             <block wx:if="{{item.drama_num.length<5}}">
                 <view class="media-num" wx:for="{{item.drama_num}}" wx:for-item="{{i}}">
-                    <text bindtap="openDetail" data-num="{{index}}" data-vid="{{item.video_id}}" class="{{item.selected?'on':'' }}">{{index+1}}</text>
+                    <text bindtap="openDetail" data-num="{{index}}" data-vid="{{item.video_id}}" data-title="{{item.title}}" class="{{item.selected?'on':'' }}">{{index+1}}</text>
                 </view>
             </block>
 
             <block wx:if="{{item.drama_num.length>5}}">
 
                 <view class="media-num" wx:for="{{item.drama_num}}" wx:if="{{index<2}}" wx:for-item="{{i}}">
-                    <text bindtap="openDetail" data-num="{{index}}" data-vid="{{item.video_id}}" class="{{item.selected?'on':'' }}">{{index+1}}</text>
+                    <text bindtap="openDetail" data-num="{{index}}" data-vid="{{item.video_id}}" data-title="{{item.title}}" class="{{item.selected?'on':'' }}">{{index+1}}</text>
                 </view>
                 <view class="media-num">
-                    <text bindtap="clickPlay" data-vid="{{item.video_id}}" class="{{item.selected?'on':'' }}">...</text>
+                    <text bindtap="clickPlay" data-vid="{{item.video_id}}" data-title="{{item.title}}" class="{{item.selected?'on':'' }}">...</text>
                 </view>
 
                 <view class="media-num">
-                    <text bindtap="openDetail" data-num="{{item.drama_num[item.drama_num.length-3].drama_id}}" data-vid="{{item.video_id}}" class="{{item.selected?'on':'' }}">{{item.drama_num[item.drama_num.length-2].drama_id}}</text>
+                    <text bindtap="openDetail" data-num="{{item.drama_num[item.drama_num.length-3].drama_id}}" data-vid="{{item.video_id}}" data-title="{{item.title}}" class="{{item.selected?'on':'' }}">{{item.drama_num[item.drama_num.length-2].drama_id}}</text>
                 </view>
                 <view class="media-num">
                     <text bindtap="openDetail" data-num="{{item.drama_num[item.drama_num.length-2].drama_id}}" data-vid="{{item.video_id}}" class="{{item.selected?'on':'' }}">{{item.drama_num[item.drama_num.length-1].drama_id}}</text>
