@@ -21,7 +21,7 @@ Page({
     },
     onLoad: function(option) {
 
-        console.log(option.title);
+        console.log(option);
 
         this.setData({
             video_id: option.id,

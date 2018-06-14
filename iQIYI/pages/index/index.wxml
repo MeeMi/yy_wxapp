@@ -15,7 +15,7 @@
     <view class="index_bd">
         <!-- 影视宣传轮播图 -->
         <view class="drumbeating-box movie-drumbeating publicity_photo">
-            <image src="{{bigImg}}" mode="widthFix" bindtap="openDetail" data-vid="{{video_id}}" />
+            <image src="{{bigImg}}" mode="widthFix" bindtap="openDetail" data-vid="{{video_id}}" data-title="{{title}}" />
         </view>
 
         <view class="movie-info">

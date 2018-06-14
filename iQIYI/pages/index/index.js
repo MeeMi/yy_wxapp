@@ -10,7 +10,8 @@ Page({
         searchRecommend: '',
         video_id: '',
         hasMore: false,
-        List: []
+        List: [],
+        title: ''
     },
     onLoad: function() {
         this.requestImg();
@@ -34,6 +35,7 @@ Page({
                     // hiddenLoading: true,
                     imgsUrlList,
                     bigImg: imgsUrlList[0].thumbnail,
+                    title: imgsUrlList[0].title,
                     video_id: imgsUrlList[0].video_id
                 })
             })
@@ -59,22 +61,25 @@ Page({
         const imgsUrlList = this.data.imgsUrlList;
         let bigImg = this.data.bigImg;
         let video_id = this.data.video_id;
+        let title = this.data.title;
 
         for (let i = 0; i < imgsUrlList.length; i++) {
             if (i == e.detail.current) {
                 bigImg = imgsUrlList[i].thumbnail;
                 video_id = imgsUrlList[i].video_id;
+                title = imgsUrlList[i].title;
             }
         }
         this.setData({
             bigImg: bigImg,
-            video_id
+            video_id,
+            title
         })
     },
     openDetail: function(e) {
         let item = e.currentTarget.dataset.vid;
         let title = e.currentTarget.dataset.title;
-
+        console.log(e)
         wx.navigateTo({
             url: `video-detail/video-detail?id=${item}&title=${title}`
         })
