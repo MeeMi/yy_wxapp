@@ -126,6 +126,6 @@ Page({
         console.log("end");
     },
     stop: function(e) {
-        console.log('stop')
+        console.log('stop');
     }
 })
