@@ -11,9 +11,9 @@
             </a>
                 <div class="user-info">
                     <div class="user-pic">
-                        <image :src="item.notePic"/>
+                        <image :src="item.avatarImg"/>
                     </div>
-                    <div class="username">{{item.userName}}</div>
+                    <div class="username">{{item.noteAuthorNickname}}</div>
                     <div class="like">
                         <image src="/static/images/like.png"/>
                         <span class="like-num">66</span>
