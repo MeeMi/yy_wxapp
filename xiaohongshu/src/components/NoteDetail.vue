@@ -1,48 +1,42 @@
 <template>
     <div  class="detailBox" >
+        <!-- 轮播图 -->
         <div class="swiperBox" >
-            <swiper  @change="imgChange" :style="{height:imageheight?imageheight+'rpx':'1006'+'rpx'}">
-                <swiper-item v-for="item in detailImgs" :key="item.id">
+            <swiper  @change="imgChange" :style="{height:imageheight?imageheight+'rpx':'1006'+'rpx'}" >
+                <swiper-item v-for="item in swiperImg" :key="item.id">
                     <image :src="item.src"  class="slide-image"  mode="widthFix" @load="FitHeight" @click="clickImg" :id="item.id" />
                 </swiper-item>
             </swiper>
         </div>
-        <div class="user-info">
-            <div class="user-pic">
-                <image src="https://ci.xiaohongshu.com/8ea674e4-12e9-4240-841a-82705a0a5263@r_640w_640h.jpg"/>
-            </div>
-            <div class="user-name">
-                小娇
-            </div>
-            <div class="follow">关注</div>
-        </div>
+         <note-avatar  :authorInfo="authorInfo" isFollow="true"></note-avatar>
         <div class="noteContent">
-            <h3 class="title">笔记标题</h3>
-            <div class="content">内容</div>
+            <h3 class="title">{{contentInfo.title}}</h3>
+            <div class="content">
+                 <wxParse :content="contentInfo.content"  />
+            </div>
             <div class="noteInfo">
-                <span class="date">2018-07-01 23:47</span>
-                <span class="collect">收藏</span> <!-- v-if -->
-                <span class="like">赞</span>
+                <span class="date">{{contentInfo.date}}</span>
+                <span class="support">{{contentInfo.support}}次赞</span>
+                <span class="collect">{{contentInfo.collect}}次收藏</span> 
             </div>
         </div>
-        <note-comment comment-title="小红薯们怎么说">
-            <!-- <note-avatar slot="avatar"></note-avatar>       -->
+        <!-- :userData -->
+        <note-comment comment-title="笔记评论" :commentItem="commentItem" :more="true" >
         </note-comment>
-        
     </div>
-
 </template>
 
 <script>
 import Comment from '@/components/Comment'
-// import Avatar from '@/components/Avatar'
+import Avatar from '@/components/Avatar'
+import wxParse from 'mpvue-wxparse'
+
 export default {
     data(){
         return{
             imgheights: [],
             scrollWidth: 0,
             current:0,
-            show:true,
         }
     },
     computed:{
@@ -52,34 +46,19 @@ export default {
     },
     components: {
         "note-comment":Comment,
-        // "note-avatar":Avatar
+        "note-avatar":Avatar,
+        wxParse
     },
-    props:{
-        detailImgs:Array
-    },
+    props:['swiperImg','authorInfo','contentInfo','commentItem'],
     methods:{
-        
         FitHeight(e){
-            // console.log(e)
-           console.log(e.mp.currentTarget.id)
-            if(this.show){
-             let imgwidth = e.mp.detail.width,
+            let imgwidth = e.mp.detail.width,
                 imgheight = e.mp.detail.height,
                 ratio = imgwidth / imgheight;//宽高比  
             let viewHeight = 750 / ratio; //使用rpx做单位
             imgheight = viewHeight.toFixed(0);
 
-            this.imgheights[e.mp.currentTarget.id-1]=imgheight;
-            // this
-            console.log(this.imgheights)
-             
-            }
-            else{
-                return;
-            } 
-        },
-        clickImg(e){
-            // console.log(e)
+            this.imgheights[e.mp.currentTarget.id-1]=imgheight; 
         },
         imgChange(e){
             // console.log(e)
@@ -96,10 +75,9 @@ export default {
                 console.log(this.scrollWidth)
             }
         });
-        
     },
-    onShow(){
-        this.FitHeight()
+    onUnload: function() {
+        
     }
 }
 </script>
@@ -108,7 +86,7 @@ export default {
     .detailBox{
         font-size: 16px;
     }
-    .detailBox-6{
+    .detailBox{
         width: 100vw;
         height: 100vh;
     }
@@ -119,45 +97,32 @@ export default {
         width: 100%;
         height:auto;
     }
-    .user-info{
-        height: 124rpx;
-        width: 100%;
-        /* line-height: 124rpx; */
-        display: flex;
-        align-items: center;
-    }
-    .user-info div{
-        display: inline-block;
-    }
-    .user-pic{
-        width: 86rpx;
-        height: 86rpx;
-        border-radius: 50%;
-        overflow: hidden;
-        margin: auto 21rpx;
-    }
-    .user-pic image{
-        width: 100%;
-        height: 100%;
-    }
-    .follow{
-        width: 108rpx;
-        height: 49rpx;
-        border: 1px solid #b94861;
-        color: #b94861;
-        position:absolute;
-        right:20rpx;
-        text-align:center;
 
-    }
     .noteContent{
-        height: 500rpx;
         width: 100%;
+    }
+    .noteContent .title{
+        width: 100%;
+        height: auto;
     }
     .noteContent .noteInfo{
         height: 28rpx;
         line-height: 28rpx;
         font-size: 12px;
         color: #dfdfdf;
+        margin:106rpx 0 25rpx;
+    }
+    .note-comment,.noteContent{
+        box-sizing:border-box;
+        padding:0 30rpx;
+    }
+    .noteContent .content img.icon{
+        width: 64rpx;
+        height: 64rpx;
+    }
+    .noteInfo .collect,.noteInfo .support{
+        color: #b9b9b9;
+        float: right;
+        margin-right: 10rpx;
     }
 </style>
