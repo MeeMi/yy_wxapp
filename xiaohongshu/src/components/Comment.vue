@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="title">
+        <div class="title commentTitle=='笔记评论':bt-color?''">
             <span>{{commentTitle}}</span>
             <div v-if="more" class="moreComment">
                 <span>共179条评论</span>
@@ -9,9 +9,15 @@
         </div>
         <div class="comment-list">
             <div class="comment-item" v-for="item in commentItem" :key="item.authorID">
-                <!-- <comment-avatar>
-
-                </comment-avatar> -->
+                <comment-avatar :authorInfo="item.authorInfo" :commentDate="item.commentDate" :support="item.support">
+                    <div slot="support">
+                        <!-- <image src="/static/images/support.png"/> -->
+                        <!-- <span>赞赞</span> -->
+                    </div>
+                </comment-avatar>
+                <div class="comment-area">
+                    <wxParse :content="item.commentContent" />
+                </div>
             </div>
         </div>
     </div>
@@ -19,21 +25,15 @@
 
 <script>
 import Avatar from '@/components/Avatar'
+import wxParse from 'mpvue-wxparse'
+
 
 export default {
    props:['commentTitle','commentItem','more'],
    components: {
-        "comment-avatar":Avatar
-    },
-    computed:{
-        authorInfo(){
-            const authorInfo = null;
-            authorInfo.avatarImg = this.commentItem.commentAvatarImg;
-            authorInfo.noteAuthorNickname = this.commentItem.commentNickname;
-            console.log(authorInfo)
-        }
+        "comment-avatar":Avatar,
+        wxParse
     }
-
 }
 </script>
 
@@ -42,8 +42,8 @@ export default {
     height: 101rpx;
     line-height: 101rpx;
     margin:0 15px;
-    border-bottom: 2px solid #e6e6e6;
 }
+
 .moreComment{
     float: right;
 }
@@ -51,5 +51,11 @@ export default {
     height: 35rpx;
     width: 35rpx;
     margin: auto 0;
+}
+.comment-area{
+    box-sizing: border-box;
+    margin: 0 21rpx 26rpx 115rpx;
+    word-wrap: break-word;
+    word-break:normal;
 }
 </style>
