@@ -21,10 +21,12 @@ export default {
         }
     },
     onLoad (options) {
+        console.log('options.id' + options.id)
         fly.get('noteDetail#!method=get').then((res)=>{
             for(let i of res.data){
                 // 笔记id 跟参数对比 然后给noteDtail
                 if(i.id == options.id){
+                    console.log('i.id ' + i.id);
                     this.swiperImg = i.swiperImg;
                     this.authorInfo = i.authorInfo;
                     this.contentInfo = i.contentInfo;
