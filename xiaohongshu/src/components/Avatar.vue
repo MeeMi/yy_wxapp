@@ -5,7 +5,12 @@
             </div>
             <div class="user-name">
                 <span class="name">{{authorInfo.noteAuthorNickname}}</span>
-                <span class="date" v-if="date">{{date}}</span>
+                <span class="date" v-if="commentDate">{{commentDate}}</span>
+                <span class="support" v-if="support">
+                    <img src="/static/images/support.png" alt="">
+                    {{support}}
+                </span>
+                <!-- <slot name="support"></slot> -->
             </div>
         <div class="follow" v-if="isFollow">关注</div>
     </div>
@@ -13,7 +18,7 @@
 
 <script>
 export default {
-   props:['authorInfo','isFollow'],
+   props:['authorInfo','isFollow','commentDate','support'],
 }
 </script>
 
@@ -24,7 +29,7 @@ export default {
         /* line-height: 124rpx; */
         display: flex;
         align-items: center;
-        border-bottom: 2px solid #e6e6e6;
+        /* border-bottom: 2px solid #e6e6e6; */
     }
     .user-info div{
         display: inline-block;
@@ -65,5 +70,14 @@ export default {
         right:20rpx;
         text-align:center;
         border-radius: 10rpx;
+    }
+    .support{
+        position:absolute;
+        top:25%;
+        right: 15px;
+    }
+    .support img{
+        height: 35rpx;
+        width: 35rpx;
     }
 </style>
