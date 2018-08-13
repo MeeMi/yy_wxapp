@@ -1,12 +1,13 @@
 <template>
     <div>
         <image src="/static/images/search.png" class="search-icon"/>
-        <input type="text" class="search-input" placeholder="大家都在搜“金秘书终于亲了”">
+        <input type="text" class="search-input" :placeholder="placeholderText">
     </div>
 </template>
 
 <script>
 export default {
+    props:['placeholderText']
 }
 </script>
 
