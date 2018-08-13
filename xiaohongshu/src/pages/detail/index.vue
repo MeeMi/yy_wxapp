@@ -1,29 +1,36 @@
 <template>
     <div>
         <!-- 传给NoteDetail组件  -->
-       <note-detail :swiperImg="swiperImg" :authorInfo="authorInfo" :contentInfo="contentInfo" :commentItem="commentItem"></note-detail>
+       <note-detail v-if="type == 1" :swiperImg="swiperImg" :authorInfo="authorInfo" :contentInfo="contentInfo" :commentItem="commentItem"></note-detail>
+
+        <note-detail v-if="type == 2"  :swiperImg="swiperImg" :contentInfo="contentInfo" :commentItem="commentItem"></note-detail>
+
     </div>
 </template>
 
 <script>
 import NoteDetail from '@/components/NoteDetail'
-import fly from '@/utils/fly'
+import { NoteDetailData } from '@/api/note'
+import { GoodsDetailData } from '@/api/mall'
 export default {
      components: {
           NoteDetail,
      },
     data(){
         return {
+            type:1,
             swiperImg:[],
             authorInfo:{},
             contentInfo:{},
-            commentItem:[]
+            commentItem:[],
         }
     },
-    onLoad (options) {
-        console.log('options.id' + options.id)
-        fly.get('noteDetail#!method=get').then((res)=>{
-            for(let i of res.data){
+    async onLoad (options) {
+        console.log('options.type' + options.type)
+        if(options.type == 'note'){
+            this.type = 1;
+            const contentData = await NoteDetailData();
+            for(let i of contentData){
                 // 笔记id 跟参数对比 然后给noteDtail
                 if(i.id == options.id){
                     console.log('i.id ' + i.id);
@@ -33,15 +40,27 @@ export default {
                     this.commentItem = i.commentItem;
                 }
             }
-            console.log(this.commentItem)
-          })
-          .catch((e)=>{
-            console.log(e)
-          })
+        }else if(options.type == 'goods') {
+            this.type = 2;
+            const contentData = await GoodsDetailData();
+            
+            
+            for(let i of contentData){
+                console.log(i)
+                // 笔记id 跟参数对比 然后给noteDtail
+                if(i.id == options.id){
+                    this.swiperImg = i.swiperImg;
+                    // this.authorInfo = i.authorInfo;
+                    this.contentInfo = i.contentInfo;
+                    this.commentItem = i.commentItem;
+                }
+            } 
+        }
     }
 }
 </script>
 
-<style>
-
+<style lang="stylus" scoped>
+    
 </style>
+
