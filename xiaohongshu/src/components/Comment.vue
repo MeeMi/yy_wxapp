@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="comment-box">
         <div class="title commentTitle=='笔记评论':bt-color?''">
             <span>{{commentTitle}}</span>
             <div v-if="more" class="moreComment">
@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import Avatar from '@/components/Avatar'
+import Avatar from '@/common/Avatar'
 import wxParse from 'mpvue-wxparse'
 
 
@@ -57,5 +57,8 @@ export default {
     margin: 0 21rpx 26rpx 115rpx;
     word-wrap: break-word;
     word-break:normal;
+}
+.comment-box {
+    margin-bottom: 100rpx;
 }
 </style>
