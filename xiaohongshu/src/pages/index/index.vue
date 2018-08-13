@@ -1,19 +1,15 @@
 <template>
     <div id="container">
       <div class="search-box">
-        <search></search>
+        <search :placeholderText="placeholderText"></search>
       </div>
-        <div class="navbar-box">
-          <select-tab :tabBar="tabBar" @switchTab="switchTab"></select-tab>
-        </div>
-
-        <swiper class="notes" >
-          <swiper-item class="category">
-              <scroll-view class="cate-box"  scroll-y>
-                <notes-content :notes="notes"></notes-content>
-              </scroll-view>
-          </swiper-item>
-        </swiper>
+      <div class="navbar-box">
+        <select-tab :tabBar="tabBar" @switchTab="switchTab"></select-tab>
+      </div>
+      <scroll-view class="cate-box"  scroll-y>
+        <notes-content :notes="notes"></notes-content>
+      </scroll-view>
+      <div v-if="isLoading" class="Loading">正在加载...</div>
     </div>
 </template>
 
@@ -21,7 +17,8 @@
 import search from '@/components/Search'
 import selectTab from '@/components/SelectTab'
 import content from '@/components/Content'
-import fly from '@/utils/fly'
+import { NoteTabbarData } from '@/api/note'
+import { indexSearch } from '@/api/search'
 
 export default {
   components: {
@@ -32,27 +29,67 @@ export default {
     data(){
         return{
           tabBar:[],
-          notes:[]
+          notes:[],
+          isLoading:true,
+          hasMore:true,
+          currentIndex:0,
+          page:0
         }
+    },
+    computed:{
+      placeholderText() {
+        return indexSearch
+      }
     },
     methods:{
       switchTab(index){
-        for(let i in this.tabBar){
-          this.tabBar[i].isSelected = parseInt(i) === index;
-          if(this.tabBar[i].isSelected){
-            this.notes = this.tabBar[i].content;
-          }
-        }
+        this.currentIndex = index;
+        this.notes = []
+        this.page = 0;
+        this.getList(this.page,4,index)
+        this.currentIndex = index;
+      },
+      // page 最后一条是第几条，pageSize 每次传几个，tabCurrent当前第几个tab
+      async getList(page,pageSize,tabCurrent,dataName){
+          this.isLoading = true;
+          this.hasMore = true;
+
+          const data = await NoteTabbarData();
+          this.tabBar = data.data;          
+          // 遍历数据
+          for(let i in this.tabBar){
+            this.tabBar[i].isSelected = parseInt(i) === tabCurrent;
+            if(this.tabBar[i].isSelected){
+              const notesContent = this.tabBar[i].content;
+
+              if(page < notesContent.length){
+                for (let j = page; j < page + pageSize; j++)
+                {
+                  if(notesContent[j])
+                  this.notes.push(notesContent[j]);
+                }
+
+              }else{
+                this.hasMore = false;
+                this.isLoading = false;
+                return;
+              }
+            }
+        } 
+        this.isLoading = false;
+        this.page = page + pageSize;
       }
     },
-    created() {
-      fly.get('tabBar#!method=get').then((res)=>{
-            this.tabBar = res.data;
-            this.switchTab(0);
-          })
-          .catch((e)=>{
-            console.log(e)
-          })
+     created() {
+      this.switchTab(0);
+      this.isLoading = false
+    },
+     onReachBottom() {
+        if (this.isLoading) {
+            // 防止数据还没回来再次触发加载
+            return;
+        }
+        this.getList(this.page,2,this.currentIndex);
     }
 }
 </script>
@@ -74,5 +111,12 @@ export default {
   }
   .notes{
     height: 100%;
+  }
+  .Loading{
+    width: 100%;
+    font-size: 30rpx;
+    color: #3e3e3e;
+    text-align: center;
+    margin-top: 20px;
   }
 </style>
