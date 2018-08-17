@@ -34,7 +34,7 @@ Page({
         if (option.hasOwnProperty('num')) {
             this.requestVideo(option.num);
         } else {
-            this.requestVideo(option.num);
+            this.requestVideo();
         }
 
         // })
